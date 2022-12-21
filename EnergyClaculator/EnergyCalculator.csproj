@@ -15,10 +15,16 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.49.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyCalculator.Core\EnergyCalculator.Core.csproj" />
+    <ProjectReference Include="..\EnergyCalculator.Infrastructure\EnergyCalculator.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
