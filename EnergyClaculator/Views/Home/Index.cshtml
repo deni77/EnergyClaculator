@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+   <div class="mt-4 p-5 bg-light">
+           <h3 class="display-4">This is a EnergyCalculator</h3>
+            <p class="lead">
+                    There are no ingredients ! 
+            </p>
+            <hr class="my-4">
+            <p class="lead">
+            @if (this.User.Identity != null && this.User.Identity.IsAuthenticated)
+            {
+                   <a asp-area="" asp-controller="Ingredient" asp-action="Add" class="btn btn-primary btn-lg"
+                    role="button">Add ingredient</a>
+            }
+            </p>
+        </div>
+</div>
