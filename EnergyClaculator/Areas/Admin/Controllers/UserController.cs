@@ -117,7 +117,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
                 }
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home", new { area = "" });
+                    return RedirectToAction("Index", "Ingredient", new { area = "" });
                     //return RedirectToAction("All", "Ingredient", new { area = "" });
                 }
             }

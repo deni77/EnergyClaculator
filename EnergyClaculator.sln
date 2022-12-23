@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCalculator", "EnergyClaculator\EnergyCalculator.csproj", "{4FF39A1E-18C9-466D-8F8B-734783B1FD57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyClaculator", "EnergyClaculator\EnergyClaculator.csproj", "{4FF39A1E-18C9-466D-8F8B-734783B1FD57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCalculator.Infrastructure", "EnergyCalculator.Infrastructure\EnergyCalculator.Infrastructure.csproj", "{0A19E676-A8A2-4D1F-8971-C21C6D7F7932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyCalculator.Infrastructure", "EnergyCalculator.Infrastructure\EnergyCalculator.Infrastructure.csproj", "{0A19E676-A8A2-4D1F-8971-C21C6D7F7932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyCalculator.Core", "EnergyCalculator.Core\EnergyCalculator.Core.csproj", "{F8859F0A-5917-4665-ACC0-E25FEC229B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyCalculator.Core", "EnergyCalculator.Core\EnergyCalculator.Core.csproj", "{F8859F0A-5917-4665-ACC0-E25FEC229B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

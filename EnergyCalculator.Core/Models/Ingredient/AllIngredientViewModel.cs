@@ -17,7 +17,7 @@ namespace EnergyCalculator.Core.Models.Ingredient
 
           public string Product { get; init; }= null!;
 
-        public decimal QuantityPer100 { get; set; }
+        public decimal QuantityForIngredient { get; set; }
 
           public decimal TotalQuantity { get; set; }
 

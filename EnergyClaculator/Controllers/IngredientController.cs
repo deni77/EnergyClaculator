@@ -1,12 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EnergyCalculator.Core.Contracts;
+using EnergyCalculator.Infrastructure.Data.Common;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EnergyCalculator.Controllers
+namespace EnergyClaculator.Controllers
 {
     public class IngredientController : Controller
     {
-        public IActionResult Index()
+         private readonly IRepository repo;
+
+        private readonly IIngredientService ingredientDervice;
+
+        public IngredientController(IRepository repo, IIngredientService ingredientDervice)
         {
-            return View();
+            this.repo = repo;
+            this.ingredientDervice = ingredientDervice;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var ingredients = await ingredientDervice.All();
+
+            return View(ingredients);
         }
     }
 }
