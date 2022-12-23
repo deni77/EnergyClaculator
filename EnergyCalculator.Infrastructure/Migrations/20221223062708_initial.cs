@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EnergyCalculator.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -160,15 +160,23 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "115e174e-5g0e-i46f-86af-458mkifd7210", "616757f5-e5cf-41dc-975b-9da904cc6848", "Fdispenser", "FDISPENSER" },
-                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "e0444688-91fa-4c50-97aa-bb35deb34e81", "User", "User" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "6fd666a3-19df-4297-9fff-c1e9e848ffad", "Admin", "ADMIN" }
+                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "842d751f-e0a0-4dad-9e5c-50da9261de66", "User", "User" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "6c483e0f-0834-464a-a0ac-edf135814fc7", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsActive", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "87612856-d498-4529-b453-bgrfd8395082", 0, "cbe56d4d-7fcc-4522-9e75-0724eec924fc", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEKLdyl6FKiMcu0MJvFDvcHvFTSFphKMnHPEEwIwn7PRneISDxR7vCOITlCdd76JoWw==", null, false, "894b5729-dbac-4e7c-9a87-214f25c184e7", false, "admin" });
+                values: new object[,]
+                {
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "cd5ccbdc-7072-478a-b1e5-8f87872a3cfb", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEDLWUaNAyITh4N6mbZkndpitK04os6npV6xiD2psQPCCIrErcEGvyz1fmtHXVMmDvA==", null, false, "02985878-e169-4b69-953f-d3cffcd0157d", false, "user" },
+                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "edabf5dd-9ab5-4919-8490-276a5093215b", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEPegzBj8Ff75hw4Z12UGwmd2d0X0trKB1eYDCVwRdxs/5ekX3t/u1cGZV160FfC7dg==", null, false, "5eb7d573-03a8-4872-800e-209cbef76119", false, "admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "2787b74e-3c0v-466f-m8af-654d56fd9010", "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -94,18 +94,35 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "87612856-d498-4529-b453-bgrfd8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cbe56d4d-7fcc-4522-9e75-0724eec924fc",
+                            ConcurrencyStamp = "edabf5dd-9ab5-4919-8490-276a5093215b",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKLdyl6FKiMcu0MJvFDvcHvFTSFphKMnHPEEwIwn7PRneISDxR7vCOITlCdd76JoWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPegzBj8Ff75hw4Z12UGwmd2d0X0trKB1eYDCVwRdxs/5ekX3t/u1cGZV160FfC7dg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "894b5729-dbac-4e7c-9a87-214f25c184e7",
+                            SecurityStamp = "5eb7d573-03a8-4872-800e-209cbef76119",
                             TwoFactorEnabled = false,
                             UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cd5ccbdc-7072-478a-b1e5-8f87872a3cfb",
+                            Email = "user@mail.com",
+                            EmailConfirmed = false,
+                            IsActive = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@MAIL.COM",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDLWUaNAyITh4N6mbZkndpitK04os6npV6xiD2psQPCCIrErcEGvyz1fmtHXVMmDvA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "02985878-e169-4b69-953f-d3cffcd0157d",
+                            TwoFactorEnabled = false,
+                            UserName = "user"
                         });
                 });
 
@@ -139,23 +156,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "6fd666a3-19df-4297-9fff-c1e9e848ffad",
+                            ConcurrencyStamp = "6c483e0f-0834-464a-a0ac-edf135814fc7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2787b74e-3c0v-466f-m8af-654d56fd9010",
-                            ConcurrencyStamp = "e0444688-91fa-4c50-97aa-bb35deb34e81",
+                            ConcurrencyStamp = "842d751f-e0a0-4dad-9e5c-50da9261de66",
                             Name = "User",
                             NormalizedName = "User"
-                        },
-                        new
-                        {
-                            Id = "115e174e-5g0e-i46f-86af-458mkifd7210",
-                            ConcurrencyStamp = "616757f5-e5cf-41dc-975b-9da904cc6848",
-                            Name = "Fdispenser",
-                            NormalizedName = "FDISPENSER"
                         });
                 });
 
@@ -252,6 +262,11 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             UserId = "87612856-d498-4529-b453-bgrfd8395082",
                             RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210"
+                        },
+                        new
+                        {
+                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            RoleId = "2787b74e-3c0v-466f-m8af-654d56fd9010"
                         });
                 });
 

@@ -32,10 +32,22 @@ namespace EnergyCalculator.Infrastructure.Data.Configuration
                 NormalizedEmail = "ADMIN@MAIL.COM"
             };
 
-            admin.PasswordHash =
-                 hasher.HashPassword(admin, "admin123");
+            admin.PasswordHash = hasher.HashPassword(admin, "admin123");
 
             users.Add(admin);
+
+             var user = new ApplicationUser()
+            {
+                Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                UserName = "user",
+                NormalizedUserName = "USER",
+                Email = "user@mail.com",
+                NormalizedEmail = "USER@MAIL.COM"
+            };
+
+            user.PasswordHash = hasher.HashPassword(user, "user123");
+
+            users.Add(user);
 
             return users;
         }
