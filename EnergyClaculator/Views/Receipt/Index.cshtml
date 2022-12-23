@@ -1,0 +1,34 @@
+﻿@using EnergyCalculator.Core.Models.Receipt
+@model IEnumerable<AllReceiptViewModel>
+@{
+    ViewData["Title"] = "All receipts";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (Model.Any())
+{
+                                   <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><label>Name</label></th>
+                                                 <th><label>TotalQuantity</label></th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>           
+            @foreach (var receipt in Model)
+            {
+                                                     <tr>
+                                                                <td><label>@receipt.Name</label></td>
+                                                                        <td><label>@receipt.TotalQuantity</label></td>
+                                                                        </tr>
+            }
+
+                                    </tbody>
+                                </table>
+}
+else
+{
+                                    <h3 class="text-center">You have no products yet!</h3>
+}

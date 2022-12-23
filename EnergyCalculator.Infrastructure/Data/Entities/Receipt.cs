@@ -13,10 +13,13 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-         [StringLength(30)]
-        public string Name { get; set; }
+        [StringLength(30)]
+        public string Name { get; set; } = null!;
 
-         public string UserId { get; set; }
+        [Precision(18,3)]
+        public decimal TotalQuantity { get; set; }
+
+         public string UserId { get; set; }= null!;
 
         public List<Ingredient> Ingredients  { get; set; } = new List<Ingredient>();
     }

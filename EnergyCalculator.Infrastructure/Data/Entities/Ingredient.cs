@@ -15,7 +15,7 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
 
         [Required]
          [StringLength(30)]
-        public string Name { get; set; }
+        public string Name { get; set; }= null!;
 
           [Required]
         public int ProductId { get; set; }

@@ -70,6 +70,7 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    TotalQuantity = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -217,8 +218,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "bf379457-e145-43e0-80d8-f621d04f2294", "User", "User" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "61a64cce-e153-4c63-a97c-fe3c5e56e9ba", "Admin", "ADMIN" }
+                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "cc287db4-b1ed-4bb9-9a54-60f999186f59", "User", "User" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "0f6046b4-81a9-4926-aa10-dd254efe8fda", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -226,8 +227,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsActive", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "2b543a51-b96a-441c-8dc8-b2a368e8ac44", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEIR4Bw5Bha+Dknlmcf9DitCV10kJls685nx94tfsXpewOVCBLhS30FuVoCro3Q+WNA==", null, false, "c2f0d931-ec64-4700-967d-03c925bfa8aa", false, "user" },
-                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "78780464-f04a-41b3-a890-787d52cdc67a", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEOkVUa+rXz3G3h4vMx6SZTPnuSZdMKC/FGEXG6c+myzRz2zRfh/fydH8i3hOEHmgBg==", null, false, "5e58ddd8-47ab-4507-8b11-d2375047c5aa", false, "admin" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "c18cc193-5a97-4970-a203-82b162733848", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEOQIo7jfnquKjo5YzePucUov624+QlUNpds2U7zeoXD4cmXL2nPILV0111o3G2MfBg==", null, false, "a05748ea-06dd-483b-a830-d27917f9bdaa", false, "user" },
+                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "b629cb30-4c17-4456-adbb-1a07058f62db", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEORbRt6uGobrvtlyJepioC4e9aRaeqPZ/4hoKnB3uXeKzeoAIQfgz+nBgkRjHXZA1Q==", null, false, "e895fa00-7539-4626-887b-565014b5527a", false, "admin" }
                 });
 
             migrationBuilder.InsertData(

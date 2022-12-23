@@ -19,6 +19,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddScoped<IProductService, ProductService>();
 
+             services.AddScoped<IReceiptService, ReceiptService>();
+
              services.AddScoped<IRepository, EnergyCalculator.Infrastructure.Data.Common.Repository>();
 
              return services;
