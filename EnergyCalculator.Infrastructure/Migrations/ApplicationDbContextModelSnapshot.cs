@@ -94,16 +94,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "87612856-d498-4529-b453-bgrfd8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "edabf5dd-9ab5-4919-8490-276a5093215b",
+                            ConcurrencyStamp = "78780464-f04a-41b3-a890-787d52cdc67a",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPegzBj8Ff75hw4Z12UGwmd2d0X0trKB1eYDCVwRdxs/5ekX3t/u1cGZV160FfC7dg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOkVUa+rXz3G3h4vMx6SZTPnuSZdMKC/FGEXG6c+myzRz2zRfh/fydH8i3hOEHmgBg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5eb7d573-03a8-4872-800e-209cbef76119",
+                            SecurityStamp = "5e58ddd8-47ab-4507-8b11-d2375047c5aa",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -111,19 +111,99 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd5ccbdc-7072-478a-b1e5-8f87872a3cfb",
+                            ConcurrencyStamp = "2b543a51-b96a-441c-8dc8-b2a368e8ac44",
                             Email = "user@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@MAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDLWUaNAyITh4N6mbZkndpitK04os6npV6xiD2psQPCCIrErcEGvyz1fmtHXVMmDvA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIR4Bw5Bha+Dknlmcf9DitCV10kJls685nx94tfsXpewOVCBLhS30FuVoCro3Q+WNA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "02985878-e169-4b69-953f-d3cffcd0157d",
+                            SecurityStamp = "c2f0d931-ec64-4700-967d-03c925bfa8aa",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
+                });
+
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("QuantityForIngredient")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalQuantity")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ReceiptId");
+
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("CaloriesPer100grams")
+                        .HasPrecision(18, 3)
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Receipt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -156,14 +236,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "6c483e0f-0834-464a-a0ac-edf135814fc7",
+                            ConcurrencyStamp = "61a64cce-e153-4c63-a97c-fe3c5e56e9ba",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2787b74e-3c0v-466f-m8af-654d56fd9010",
-                            ConcurrencyStamp = "842d751f-e0a0-4dad-9e5c-50da9261de66",
+                            ConcurrencyStamp = "bf379457-e145-43e0-80d8-f621d04f2294",
                             Name = "User",
                             NormalizedName = "User"
                         });
@@ -291,6 +371,25 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Ingredient", b =>
+                {
+                    b.HasOne("EnergyCalculator.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EnergyCalculator.Infrastructure.Data.Entities.Receipt", "Receipt")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("ReceiptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Receipt");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -340,6 +439,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Product", b =>
+                {
+                    b.Navigation("Ingredients");
+                });
+
+            modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Receipt", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

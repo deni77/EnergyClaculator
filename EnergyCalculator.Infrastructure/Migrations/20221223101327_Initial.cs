@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EnergyCalculator.Infrastructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,34 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CaloriesPer100grams = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Receipts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Receipts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -155,13 +183,42 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Ingredients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ReceiptId = table.Column<int>(type: "int", nullable: false),
+                    QuantityForIngredient = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false),
+                    TotalQuantity = table.Column<decimal>(type: "decimal(18,3)", precision: 18, scale: 3, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ingredients_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ingredients_Receipts_ReceiptId",
+                        column: x => x.ReceiptId,
+                        principalTable: "Receipts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "842d751f-e0a0-4dad-9e5c-50da9261de66", "User", "User" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "6c483e0f-0834-464a-a0ac-edf135814fc7", "Admin", "ADMIN" }
+                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "bf379457-e145-43e0-80d8-f621d04f2294", "User", "User" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "61a64cce-e153-4c63-a97c-fe3c5e56e9ba", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -169,8 +226,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsActive", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "cd5ccbdc-7072-478a-b1e5-8f87872a3cfb", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEDLWUaNAyITh4N6mbZkndpitK04os6npV6xiD2psQPCCIrErcEGvyz1fmtHXVMmDvA==", null, false, "02985878-e169-4b69-953f-d3cffcd0157d", false, "user" },
-                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "edabf5dd-9ab5-4919-8490-276a5093215b", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEPegzBj8Ff75hw4Z12UGwmd2d0X0trKB1eYDCVwRdxs/5ekX3t/u1cGZV160FfC7dg==", null, false, "5eb7d573-03a8-4872-800e-209cbef76119", false, "admin" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "2b543a51-b96a-441c-8dc8-b2a368e8ac44", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEIR4Bw5Bha+Dknlmcf9DitCV10kJls685nx94tfsXpewOVCBLhS30FuVoCro3Q+WNA==", null, false, "c2f0d931-ec64-4700-967d-03c925bfa8aa", false, "user" },
+                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "78780464-f04a-41b3-a890-787d52cdc67a", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEOkVUa+rXz3G3h4vMx6SZTPnuSZdMKC/FGEXG6c+myzRz2zRfh/fydH8i3hOEHmgBg==", null, false, "5e58ddd8-47ab-4507-8b11-d2375047c5aa", false, "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -221,6 +278,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ingredients_ProductId",
+                table: "Ingredients",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ingredients_ReceiptId",
+                table: "Ingredients",
+                column: "ReceiptId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -241,10 +308,19 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Ingredients");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Receipts");
         }
     }
 }
