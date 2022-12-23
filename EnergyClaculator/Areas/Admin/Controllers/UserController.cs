@@ -1,5 +1,7 @@
 ﻿using EnergyCalculator.Areas.Admin.Models.User;
 using EnergyCalculator.Core;
+using EnergyCalculator.Core.Contracts.Admin;
+using EnergyCalculator.Core.Services.Admin;
 using EnergyCalculator.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,12 +15,14 @@ namespace EnergyCalculator.Areas.Admin.Controllers
         private readonly UserManager<ApplicationUser> userManager;
 
         private readonly SignInManager<ApplicationUser> signInManager;
-        public UserController(
-            UserManager<ApplicationUser> _userManager,
-            SignInManager<ApplicationUser> _signInManager)
+
+        private readonly IUserService userService;
+        public UserController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,
+                               IUserService userService)
         {
-            userManager = _userManager;
-            signInManager = _signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.userService=userService;
             }
 
         [HttpGet]
@@ -57,6 +61,8 @@ namespace EnergyCalculator.Areas.Admin.Controllers
             {// ako sled register трябва да логваме User
              // await signInManager.SignInAsync(user, isPersistent: false);
              // return RedirectToAction("All", "Movies");
+
+                 await userService.AddToRoleUser(user);
 
                 TempData[MessageConstant.SuccessMessage] = "You are registered in the system !";
 
@@ -111,7 +117,8 @@ namespace EnergyCalculator.Areas.Admin.Controllers
                 }
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("All", "Ingredient", new { area = "" });
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                    //return RedirectToAction("All", "Ingredient", new { area = "" });
                 }
             }
 
