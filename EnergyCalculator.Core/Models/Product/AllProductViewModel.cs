@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace EnergyCalculator.Core.Models.Product
 {
-    public class AllProductViewModel
+    public class AllProductViewModel:ProductViewModel
     {
-        public string Name { get; set; }
-
-        public decimal CaloriesPer100grams { get; set; }
-    }
+        public int Id { get; init; }
+        }
 }

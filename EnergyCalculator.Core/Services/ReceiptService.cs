@@ -26,8 +26,9 @@ namespace EnergyCalculator.Core.Services
             var receipts = await repo.AllReadonly<Receipt>()
                 .Select(i => new EnergyCalculator.Core.Models.Receipt.AllReceiptViewModel()
                 {
+                    Id = i.Id,
                     Name = i.Name,
-                    TotalQuantity=i.TotalQuantity
+                    TotalQuantity = i.TotalQuantity
                 })
                 .ToListAsync();
 

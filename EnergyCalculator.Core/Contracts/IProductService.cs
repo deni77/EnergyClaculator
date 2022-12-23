@@ -11,5 +11,6 @@ namespace EnergyCalculator.Core.Contracts
     public interface IProductService
     {
          Task<IEnumerable<AllProductViewModel>> All();
+        Task<int> Add(ProductViewModel model);
     }
 }

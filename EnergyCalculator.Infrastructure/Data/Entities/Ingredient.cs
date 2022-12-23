@@ -30,11 +30,9 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         public Receipt Receipt { get; init; } = null!;
 
         [Required]
-        [Precision(18,3)]
-        public decimal QuantityForIngredient { get; set; }
+        public int QuantityForIngredient { get; set; }
 
          [Required]
-        [Precision(18,3)]
-        public decimal TotalQuantity { get; set; }
+         public int TotalQuantity { get; set; }
     }
 }

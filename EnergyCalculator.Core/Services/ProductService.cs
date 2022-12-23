@@ -21,11 +21,26 @@ namespace EnergyCalculator.Core.Services
             this.repo = repo;
         }
 
+        public async Task<int> Add(ProductViewModel model)
+        {
+             var product = new Product()
+            {
+                  Name=model.Name,
+                   CaloriesPer100grams=model.CaloriesPer100grams
+             };
+
+            await repo.AddAsync(product);
+            await repo.SaveChangesAsync();
+
+            return product.Id;
+        }
+
         public async Task<IEnumerable<AllProductViewModel>> All()
         {
             var products = await repo.AllReadonly<Product>()
                 .Select(i => new AllProductViewModel()
                 {
+                     Id = i.Id,
                     CaloriesPer100grams = i.CaloriesPer100grams,
                     Name = i.Name
                 })

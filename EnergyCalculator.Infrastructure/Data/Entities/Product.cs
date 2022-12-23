@@ -18,8 +18,7 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         public string Name { get; set; }= null!;
 
          [Required]
-          [Precision(18, 3)]
-        public decimal CaloriesPer100grams { get; set; }
+           public int CaloriesPer100grams { get; set; }
 
         public List<Ingredient> Ingredients  { get; set; } = new List<Ingredient>();
 

@@ -24,6 +24,7 @@ namespace EnergyCalculator.Core.Services
         {
             var ingredients = await repo.AllReadonly<Ingredient>()
                 .Select(i=>new AllIngredientViewModel() { 
+                    Id = i.Id,
                  Product=i.Product.Name,
                   Receipt=i.Receipt.Name,
                    QuantityForIngredient=i.QuantityForIngredient ,

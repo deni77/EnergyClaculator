@@ -94,16 +94,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "87612856-d498-4529-b453-bgrfd8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b629cb30-4c17-4456-adbb-1a07058f62db",
+                            ConcurrencyStamp = "2edb665d-99c6-40cd-bf22-e46ef7522384",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEORbRt6uGobrvtlyJepioC4e9aRaeqPZ/4hoKnB3uXeKzeoAIQfgz+nBgkRjHXZA1Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECDKq0kBO3cHszw5Dd+2/sxXpEF8qmKtraIEjEXUug0Ec2cdMALL9+CDqJCTPLb3cQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e895fa00-7539-4626-887b-565014b5527a",
+                            SecurityStamp = "6285540d-bd2e-41f4-8ea7-c3c78cbbef5d",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -111,16 +111,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c18cc193-5a97-4970-a203-82b162733848",
+                            ConcurrencyStamp = "b300b6e8-9722-4c43-867c-9df6442229c9",
                             Email = "user@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@MAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOQIo7jfnquKjo5YzePucUov624+QlUNpds2U7zeoXD4cmXL2nPILV0111o3G2MfBg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEbpleRYIeIFvkGQLe/bvP45ZkMoFJRf9IW5rmx4o7vQyASHxnivOa0Byz7y3z3+zQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a05748ea-06dd-483b-a830-d27917f9bdaa",
+                            SecurityStamp = "928ba0cd-ed5c-4321-98f7-99608e072832",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
@@ -142,16 +142,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("QuantityForIngredient")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<int>("QuantityForIngredient")
+                        .HasColumnType("int");
 
                     b.Property<int>("ReceiptId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalQuantity")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<int>("TotalQuantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -170,9 +168,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("CaloriesPer100grams")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<int>("CaloriesPer100grams")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -197,9 +194,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<decimal>("TotalQuantity")
-                        .HasPrecision(18, 3)
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<int>("TotalQuantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -240,14 +236,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "0f6046b4-81a9-4926-aa10-dd254efe8fda",
+                            ConcurrencyStamp = "191b5426-dde5-4cb4-a120-3dbcc2802e6a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2787b74e-3c0v-466f-m8af-654d56fd9010",
-                            ConcurrencyStamp = "cc287db4-b1ed-4bb9-9a54-60f999186f59",
+                            ConcurrencyStamp = "1e395b1f-e770-4ce4-b56d-a9157042135d",
                             Name = "User",
                             NormalizedName = "User"
                         });

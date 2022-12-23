@@ -16,8 +16,7 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         [StringLength(30)]
         public string Name { get; set; } = null!;
 
-        [Precision(18,3)]
-        public decimal TotalQuantity { get; set; }
+       public int TotalQuantity { get; set; }
 
          public string UserId { get; set; }= null!;
 
