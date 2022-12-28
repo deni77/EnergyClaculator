@@ -11,5 +11,8 @@ namespace EnergyCalculator.Core.Contracts
     public interface IReceiptService
     {
           Task<IEnumerable<AllReceiptViewModel>> All();
+
+         Task<int> Add(ReceiptViewModel model);
+        Task<bool> Exists(string name);
     }
 }

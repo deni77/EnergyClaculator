@@ -25,7 +25,7 @@ namespace EnergyCalculator.Core.Services
         {
              var product = new Product()
             {
-                  Name=model.Name,
+                  Name=model.Name.ToLower(),
                    CaloriesPer100grams=model.CaloriesPer100grams
              };
 
@@ -47,6 +47,20 @@ namespace EnergyCalculator.Core.Services
                 .ToListAsync();
 
             return products;
+        }
+        public async Task<bool> Exists(string name)
+        {
+            var res = await repo.AllReadonly<Product>()
+                 .Where(u=>u.Name==name.ToLower()).ToListAsync();
+
+            if (res.Count!=0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

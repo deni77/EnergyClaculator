@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EnergyCalculator.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -31,7 +32,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("All", "Ingredient", new { area = "" });
+                return RedirectToAction("Index", "Ingredient", new { area = "" });
             }
 
             var model = new RegisterViewModel();
@@ -83,7 +84,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("All", "Ingredient", new { area = "" });
+                return RedirectToAction("Index", "Ingredient", new { area = "" });
                 // return RedirectToAction("Index", "Home");
             }
 

@@ -10,8 +10,9 @@ namespace EnergyCalculator.Core.Models.Receipt
     public class AllReceiptViewModel
     {
         public int Id { get; init; }
-        public string Name { get; set; } = null!;
 
-         public int TotalQuantity { get; set; }
+           public string Name { get; set; } = null!;
+       public int TotalQuantity { get; set; }
+
     }
 }

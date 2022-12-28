@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace EnergyCalculator.Core.Models.Product
 {
-    public class AllProductViewModel:ProductViewModel
+    public class AllProductViewModel : ProductViewModel
     {
         public int Id { get; init; }
-        }
+    }
 }

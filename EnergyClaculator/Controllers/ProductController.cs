@@ -8,6 +8,7 @@ using System.Data;
 
 namespace EnergyClaculator.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
          private readonly IRepository repo;
@@ -41,6 +42,12 @@ namespace EnergyClaculator.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+            }
+
+            if (await productService.Exists(model.Name)==true)
+            {
+                TempData[MessageConstant.ErrorMessage] = "Product with this name is already added !";
+               return RedirectToAction("Add", "Product", new { area = "" });
             }
 
            int id = await productService.Add(model);

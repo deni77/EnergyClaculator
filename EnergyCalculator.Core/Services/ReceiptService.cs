@@ -3,10 +3,12 @@ using EnergyCalculator.Core.Models.Product;
 using EnergyCalculator.Core.Models.Receipt;
 using EnergyCalculator.Infrastructure.Data.Common;
 using EnergyCalculator.Infrastructure.Data.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +23,23 @@ namespace EnergyCalculator.Core.Services
             this.repo = repo;
         }
 
+        public async Task<int> Add(ReceiptViewModel model)
+        {
+
+            var receipt = new Receipt()
+            {
+                Name = model.Name.ToLower(),
+                TotalQuantity = 0,
+                UserId = model.UserId,
+              
+                  };
+
+            await repo.AddAsync(receipt);
+            await repo.SaveChangesAsync();
+
+            return receipt.Id;
+        } 
+
         public async Task<IEnumerable<AllReceiptViewModel>> All()
         {
             var receipts = await repo.AllReadonly<Receipt>()
@@ -28,11 +47,26 @@ namespace EnergyCalculator.Core.Services
                 {
                     Id = i.Id,
                     Name = i.Name,
-                    TotalQuantity = i.TotalQuantity
+                    //TotalQuantity = i.TotalQuantity
                 })
                 .ToListAsync();
 
             return receipts;
+        }
+
+        public async Task<bool> Exists(string name)
+        {
+            var res = await repo.AllReadonly<Receipt>()
+                 .Where(u=>u.Name==name.ToLower()).ToListAsync();
+
+            if (res.Count!=0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

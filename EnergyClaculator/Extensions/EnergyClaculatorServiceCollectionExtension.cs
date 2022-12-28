@@ -8,7 +8,7 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class BillLadingServiceCollectionExtension
+    public static class EnergyClaculatorServiceCollectionExtension
     {
 
          public static IServiceCollection AddApplicationServices(this IServiceCollection services)

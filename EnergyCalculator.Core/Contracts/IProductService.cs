@@ -12,5 +12,7 @@ namespace EnergyCalculator.Core.Contracts
     {
          Task<IEnumerable<AllProductViewModel>> All();
         Task<int> Add(ProductViewModel model);
+
+        Task<bool> Exists(string name);
     }
 }
