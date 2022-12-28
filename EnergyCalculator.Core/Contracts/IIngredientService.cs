@@ -21,7 +21,7 @@ namespace EnergyCalculator.Core.Contracts
 
         Task<bool> ExistsIngredient(int productId, int receiptId);
 
-        //
+        Task<IEnumerable<AllIngredientViewModel>> MyIngredients(string userId);
         Task<int> CalculateTotalCaloriesByProduct(int productId, int totalForIngredient);
     }
 }

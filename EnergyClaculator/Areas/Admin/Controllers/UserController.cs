@@ -18,13 +18,13 @@ namespace EnergyCalculator.Areas.Admin.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
 
         private readonly IUserService userService;
-        public UserController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,
+        public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
                                IUserService userService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.userService=userService;
-            }
+            this.userService = userService;
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -63,7 +63,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
              // await signInManager.SignInAsync(user, isPersistent: false);
              // return RedirectToAction("All", "Movies");
 
-                 await userService.AddToRoleUser(user);
+                await userService.AddToRoleUser(user);
 
                 TempData[MessageConstant.SuccessMessage] = "You are registered in the system !";
 
@@ -102,24 +102,20 @@ namespace EnergyCalculator.Areas.Admin.Controllers
                 return View(model);
             }
 
-           
+
             var user = await userManager.FindByNameAsync(model.UserName);
 
             if (user != null)
             {
                 var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
-                //if (result.Succeeded)
-                //{
-                //    return RedirectToAction("All", "BillLading",new { area=""});
-                //}
+
                 if (result.Succeeded && await userManager.IsInRoleAsync(user, "Admin"))
                 {
                     return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 }
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Ingredient", new { area = "" });
-                    //return RedirectToAction("All", "Ingredient", new { area = "" });
+                    return RedirectToAction("Index", "Product", new { area = "" });
                 }
             }
 
@@ -137,7 +133,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-       
 
-        }
+
+    }
 }

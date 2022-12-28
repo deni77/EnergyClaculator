@@ -27,6 +27,16 @@ namespace EnergyClaculator.Controllers
             return View(ingredients);
         }
 
+         public async Task<IActionResult> MyIngredients()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value ;
+
+            var ingredients = await ingredientDervice.MyIngredients(currentUserID);
+
+            return View(ingredients);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Add()
         {

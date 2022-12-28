@@ -37,14 +37,14 @@ namespace EnergyCalculator.Core.Services
                 UserId = model.UserId
             };
 
-           
+
             await repo.AddAsync(ingredient);
-             await repo.SaveChangesAsync();
+            await repo.SaveChangesAsync();
 
             Receipt receipt = await receiptService.GetReceiptById(model.ReceiptId);
             receipt.TotalCalories += ingredient.TotalCalories;
 
-             repo.Update(receipt);
+            repo.Update(receipt);
 
             await repo.SaveChangesAsync();
 
@@ -113,6 +113,21 @@ namespace EnergyCalculator.Core.Services
             {
                 return false;
             }
+        }
+
+        public async Task<IEnumerable<AllIngredientViewModel>> MyIngredients(string userId)
+        {
+            return  await repo.AllReadonly<Ingredient>()
+                .Where(u=>u.UserId==userId)
+              .Select(i => new AllIngredientViewModel()
+              {
+                  Id = i.Id,
+                  Product = i.Product.Name,
+                  Receipt = i.Receipt.Name,
+                  QuantityForIngredient = i.QuantityForIngredient,
+                  TotalQuantity = i.TotalCalories
+              })
+              .ToListAsync();
         }
     }
 }
