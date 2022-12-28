@@ -4,6 +4,7 @@ using EnergyCalculator.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnergyCalculator.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221228160324_RemoveNameIngredient")]
+    partial class RemoveNameIngredient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,16 +96,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "87612856-d498-4529-b453-bgrfd8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "04f34c14-8a51-4ca5-9be7-bc021bd80114",
+                            ConcurrencyStamp = "87a121e3-fd21-410d-89d6-9c05a6555f20",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEi2a3+dKeaBiaodq/snCBL1MVw9/g0Q7Q4hcvx7wtFiIbzJEIgPp4aGJBJL9YPlhQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDsxSW/0L7v/GFL9Da4UAA2iUmAEdWEtO0tvhMULc1Gg59MyHfIcB53I/Q+XXLGD5g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d588c86-d40f-489c-b176-9d8be6ad5e4a",
+                            SecurityStamp = "2584b877-3a6f-4538-8a53-482d111c3f52",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -111,16 +113,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cddfd3d5-5fee-40f7-bcb0-f7f5dc5d9049",
+                            ConcurrencyStamp = "5090a05b-7485-4e3e-9b18-54097e75c39b",
                             Email = "user@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@MAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAECA9O2RdQ0mh5E/N9/omgmoRSj6/Xciz7+M74hYG80UDAXuaeIxRrAfPu6AH03hS3Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC7jonvNpp2dOo6Qo8tHiAHHmFFSwJPHipUMYCXTtnfemv1PxS+a8EbPy/5nmUmztA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d709f04d-47ab-4738-8c60-d4121417cea8",
+                            SecurityStamp = "da0e572d-55e5-4301-b0f8-e4e4035dfa20",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
@@ -145,10 +147,6 @@ namespace EnergyCalculator.Infrastructure.Migrations
 
                     b.Property<int>("TotalCalories")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -235,14 +233,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "f2b23b10-cb25-45e7-b197-67ae9418a084",
+                            ConcurrencyStamp = "08d2b8f1-b19d-4f98-a355-bc47f9e963fe",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2787b74e-3c0v-466f-m8af-654d56fd9010",
-                            ConcurrencyStamp = "3d51b22c-0d5c-4681-b66d-ae5a6aee3db2",
+                            ConcurrencyStamp = "52225e02-fb19-4f94-b2fb-5a9ec4399a68",
                             Name = "User",
                             NormalizedName = "User"
                         });

@@ -1,0 +1,44 @@
+﻿@model IngredientViewModel
+
+<h2 class="text-center">Add new Ingredient</h2>
+@{
+    Model.UserId = (string)TempData["UserId"];
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+             <input type="hidden" asp-for="@Model.UserId" />
+           <div class="form-group">
+                <label asp-for="ReceiptId" style="color:red"></label>
+                <select asp-for="ReceiptId" class="form-control">
+                    @foreach (var rec in Model.Receipts)
+                    {
+                                        <option value="@rec.Id">@rec.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ReceiptId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductId" style="color:red"></label>
+                <select asp-for="ProductId" class="form-control">
+                    @foreach (var product in Model.Products)
+                    {
+                                    <option value="@product.Id">@product.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ProductId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityForIngredient"></label>
+                <input asp-for="QuantityForIngredient" class="form-control" placeholder="QuantityForIngredient...">
+                <span asp-validation-for="QuantityForIngredient" class="small text-danger"></span>
+            </div>
+
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>

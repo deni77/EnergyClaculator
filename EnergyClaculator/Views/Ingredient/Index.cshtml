@@ -5,7 +5,10 @@
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
+
 <hr />
+<a asp-area="" asp-controller="Ingredient" asp-action="Add" class="btn btn-success">Add new Ingredient</a>
+<hr/>
 
 @if (Model.Any())
 {
@@ -14,8 +17,8 @@
                             <tr>
                                 <th><label>Receipt</label></th>
                                  <th><label>Product</label></th>
-                                 <th><label>Quantity For the Ingredient</label></th>
-                                <th><label>Total Quantity</label></th>
+                                 <th><label>Quantity in grammes</label></th>
+                                <th><label>Total Calories for Ingredient</label></th>
                              </tr>
                         </thead>
                         <tbody>           

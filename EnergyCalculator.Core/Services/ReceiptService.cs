@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace EnergyCalculator.Core.Services
 {
@@ -29,7 +30,7 @@ namespace EnergyCalculator.Core.Services
             var receipt = new Receipt()
             {
                 Name = model.Name.ToLower(),
-                TotalQuantity = 0,
+                TotalCalories = 0,
                 UserId = model.UserId,
               
                   };
@@ -47,7 +48,7 @@ namespace EnergyCalculator.Core.Services
                 {
                     Id = i.Id,
                     Name = i.Name,
-                    //TotalQuantity = i.TotalQuantity
+                    TotalQuantity =i.TotalCalories
                 })
                 .ToListAsync();
 
@@ -67,6 +68,12 @@ namespace EnergyCalculator.Core.Services
             {
                 return false;
             }
+        }
+
+        public async Task<Receipt> GetReceiptById(int id)
+        {
+           return  await repo.AllReadonly<Receipt>()
+                 .Where(u=>u.Id==id).FirstAsync();
         }
     }
 }

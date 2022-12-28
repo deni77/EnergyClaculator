@@ -1,4 +1,6 @@
 ﻿using EnergyCalculator.Core.Models.Ingredient;
+using EnergyCalculator.Core.Models.Product;
+using EnergyCalculator.Core.Models.Receipt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +12,16 @@ namespace EnergyCalculator.Core.Contracts
     public interface IIngredientService
     {
         Task<IEnumerable<AllIngredientViewModel>> All();
+
+        Task<IEnumerable<IngredientProductModel>> AllProducts();
+
+        Task<IEnumerable<IngredientReceiptModel>> AllReceipts();
+
+        Task<int> Add(IngredientViewModel model);
+
+        Task<bool> ExistsIngredient(int productId, int receiptId);
+
+        //
+        Task<int> CalculateTotalCaloriesByProduct(int productId, int totalForIngredient);
     }
 }

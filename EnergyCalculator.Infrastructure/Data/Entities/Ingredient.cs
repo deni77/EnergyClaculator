@@ -13,11 +13,7 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
     {
         public int Id { get; set; }
 
-        [Required]
-         [StringLength(30)]
-        public string Name { get; set; }= null!;
-
-          [Required]
+         [Required]
         public int ProductId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
@@ -29,10 +25,12 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         [ForeignKey(nameof(ReceiptId))]
         public Receipt Receipt { get; init; } = null!;
 
+         public string UserId { get; set; }= null!;
+
         [Required]
         public int QuantityForIngredient { get; set; }
 
          [Required]
-         public int TotalQuantity { get; set; }
+         public int TotalCalories { get; set; }
     }
 }

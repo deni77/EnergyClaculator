@@ -1,5 +1,6 @@
 ﻿using EnergyCalculator.Core.Models.Product;
 using EnergyCalculator.Core.Models.Receipt;
+using EnergyCalculator.Infrastructure.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace EnergyCalculator.Core.Contracts
 
          Task<int> Add(ReceiptViewModel model);
         Task<bool> Exists(string name);
+
+        Task<Receipt> GetReceiptById(int id);
     }
 }
