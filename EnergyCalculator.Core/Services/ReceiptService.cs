@@ -1,4 +1,5 @@
 ﻿using EnergyCalculator.Core.Contracts;
+using EnergyCalculator.Core.Models.Ingredient;
 using EnergyCalculator.Core.Models.Product;
 using EnergyCalculator.Core.Models.Receipt;
 using EnergyCalculator.Infrastructure.Data.Common;
@@ -74,6 +75,19 @@ namespace EnergyCalculator.Core.Services
         {
            return  await repo.AllReadonly<Receipt>()
                  .Where(u=>u.Id==id).FirstAsync();
+        }
+
+        public async Task<IEnumerable<AllReceiptViewModel>> MyReceipts(string userId)
+        {
+             return  await repo.AllReadonly<Receipt>()
+                .Where(u=>u.UserId==userId)
+              .Select(i => new AllReceiptViewModel()
+              {
+                  Id = i.Id,
+                  Name=i.Name,
+                  TotalQuantity = i.TotalCalories
+              })
+              .ToListAsync();
         }
     }
 }

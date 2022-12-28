@@ -37,7 +37,7 @@ namespace EnergyClaculator.Controllers
             var model = new ReceiptViewModel();
 
             ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value ;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             TempData["UserId"] = currentUserID;
             return View(model);
@@ -51,19 +51,29 @@ namespace EnergyClaculator.Controllers
                 return View(model);
             }
 
-            if (await receiptService.Exists(model.Name)==true)
+            if (await receiptService.Exists(model.Name) == true)
             {
                 TempData[MessageConstant.ErrorMessage] = "Receipt with this name is already added !";
-               return RedirectToAction("Add", "Receipt", new { area = "" });
+                return RedirectToAction("Add", "Receipt", new { area = "" });
             }
 
-           
 
-           int id = await receiptService.Add(model);
+
+            int id = await receiptService.Add(model);
 
             TempData[MessageConstant.SuccessMessage] = "New receipt is added !";
 
-            return RedirectToAction(nameof(Index),new { id } ); 
+            return RedirectToAction(nameof(Index), new { id });
+        }
+
+        public async Task<IActionResult> MyReceipts()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var ingredients = await receiptService.MyReceipts(currentUserID);
+
+            return View(ingredients);
         }
     }
 }
