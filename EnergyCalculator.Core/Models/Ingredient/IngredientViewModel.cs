@@ -13,8 +13,12 @@ namespace EnergyCalculator.Core.Models.Ingredient
     public class IngredientViewModel
     {
         [Display(Name = "Choose a receipt ")]
+        [Required]
+        [Range(1, 1000000, ErrorMessage ="The receipt field is required !")]
         public int ReceiptId { get; init; }
 
+        [Required]
+         [Range(1, 1000000, ErrorMessage ="The product field is required !")]
         [Display(Name = "Choose a product ")]
         public int ProductId { get; init; }
 

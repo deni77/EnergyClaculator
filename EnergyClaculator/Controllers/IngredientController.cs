@@ -1,4 +1,5 @@
 ﻿using EnergyCalculator.Core;
+using EnergyCalculator.Core.Constants;
 using EnergyCalculator.Core.Contracts;
 using EnergyCalculator.Core.Models.Ingredient;
 using EnergyCalculator.Core.Services;
@@ -27,10 +28,9 @@ namespace EnergyClaculator.Controllers
             return View(ingredients);
         }
 
-         public async Task<IActionResult> MyIngredients()
+        public async Task<IActionResult> MyIngredients()
         {
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value ;
+            var currentUserID = getCurrentUserId();
 
             var ingredients = await ingredientDervice.MyIngredients(currentUserID);
 
@@ -43,13 +43,10 @@ namespace EnergyClaculator.Controllers
             var model = new IngredientViewModel()
             {
                 Products = await ingredientDervice.AllProducts(),
-                 Receipts=await ingredientDervice.AllReceipts()
-                 };
+                Receipts = await ingredientDervice.AllReceipts()
+            };
 
-             ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value ;
-
-            TempData["UserId"] = currentUserID;
+            TempData["UserId"] = getCurrentUserId();
 
             return View(model);
         }
@@ -59,17 +56,17 @@ namespace EnergyClaculator.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.Products = await ingredientDervice.AllProducts() ;
-                 model.Receipts = await ingredientDervice.AllReceipts() ;
+                model.Products = await ingredientDervice.AllProducts();
+                model.Receipts = await ingredientDervice.AllReceipts();
                 return View(model);
             }
 
-              if (await ingredientDervice.ExistsIngredient(model.ProductId, model.ReceiptId)==true)
+            if (await ingredientDervice.ExistsIngredient(model.ProductId, model.ReceiptId) == true)
             {
-                TempData[MessageConstant.ErrorMessage] = 
+                TempData[MessageConstant.ErrorMessage] =
                             "Ingredient with this product and this receipt is already added !";
-               return RedirectToAction("Add", "Ingredient", new { area = "" });
-               }
+                return RedirectToAction("Add", "Ingredient", new { area = "" });
+            }
 
             double TotalCalories = await ingredientDervice.CalculateTotalCaloriesByProduct(model.ProductId, model.QuantityForIngredient);
 
@@ -80,7 +77,13 @@ namespace EnergyClaculator.Controllers
 
             TempData[MessageConstant.SuccessMessage] = "New Ingredient is added !";
 
-            return RedirectToAction(nameof(Index) ); 
+            return RedirectToAction(nameof(Index));
+        }
+
+        public string getCurrentUserId()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            return currentUser?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }
 }

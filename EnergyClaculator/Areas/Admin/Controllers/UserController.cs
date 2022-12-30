@@ -1,5 +1,6 @@
 ﻿using EnergyCalculator.Areas.Admin.Models.User;
 using EnergyCalculator.Core;
+using EnergyCalculator.Core.Constants;
 using EnergyCalculator.Core.Contracts.Admin;
 using EnergyCalculator.Core.Services.Admin;
 using EnergyCalculator.Infrastructure.Data.Entities;

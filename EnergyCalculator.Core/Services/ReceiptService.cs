@@ -45,6 +45,7 @@ namespace EnergyCalculator.Core.Services
         public async Task<IEnumerable<AllReceiptViewModel>> All()
         {
             var receipts = await repo.AllReadonly<Receipt>()
+                 .OrderBy(i => i.Name)
                 .Select(i => new EnergyCalculator.Core.Models.Receipt.AllReceiptViewModel()
                 {
                     Id = i.Id,
@@ -81,6 +82,7 @@ namespace EnergyCalculator.Core.Services
         {
              return  await repo.AllReadonly<Receipt>()
                 .Where(u=>u.UserId==userId)
+                 .OrderBy(i => i.Name)
               .Select(i => new AllReceiptViewModel()
               {
                   Id = i.Id,

@@ -1,13 +1,18 @@
 ﻿@using EnergyCalculator.Core.Models.Product
+
 @model IEnumerable<AllProductViewModel>
 @{
     ViewData["Title"] = "All products";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
+@if(User?.Identity?.IsAuthenticated ?? false)
+                    {
 <hr />
 <a asp-area="" asp-controller="Product" asp-action="Add" class="btn btn-success">Add new Product</a>
 <hr/>
+                    }
+
 @if (Model.Any())
 {
                            <table class="table table-striped">

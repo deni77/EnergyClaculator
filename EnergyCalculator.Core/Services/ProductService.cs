@@ -38,6 +38,7 @@ namespace EnergyCalculator.Core.Services
         public async Task<IEnumerable<AllProductViewModel>> All()
         {
             var products = await repo.AllReadonly<Product>()
+                .OrderBy(i=>i.Name)
                 .Select(i => new AllProductViewModel()
                 {
                      Id = i.Id,

@@ -55,6 +55,7 @@ namespace EnergyCalculator.Core.Services
         public async Task<IEnumerable<AllIngredientViewModel>> All()
         {
             var ingredients = await repo.AllReadonly<Ingredient>()
+                .OrderBy(i => i.ReceiptId).ThenBy(i=>i.ProductId)
                 .Select(i => new AllIngredientViewModel()
                 {
                     Id = i.Id,
@@ -91,7 +92,11 @@ namespace EnergyCalculator.Core.Services
 
         public async Task<IEnumerable<IngredientReceiptModel>> AllReceipts()
         {
-            return await repo.AllReadonly<Receipt>()
+             var result = new List<IngredientReceiptModel>();
+
+            result.Add(new IngredientReceiptModel() {  Id=0, Name=""});
+
+           var list= await repo.AllReadonly<Receipt>()
                 .OrderBy(c => c.Name)
                 .Select(c => new IngredientReceiptModel()
                 {
@@ -99,6 +104,10 @@ namespace EnergyCalculator.Core.Services
                     Name = c.Name
                 })
                 .ToListAsync();
+
+            result.AddRange(list);
+
+            return result;
         }
 
         public async Task<double> CalculateTotalCaloriesByProduct(double productId, double totalForIngredient)
@@ -128,6 +137,7 @@ namespace EnergyCalculator.Core.Services
         {
             return  await repo.AllReadonly<Ingredient>()
                 .Where(u=>u.UserId==userId)
+                 .OrderBy(i => i.ReceiptId)//.ThenBy(i=>i.ProductId)
               .Select(i => new AllIngredientViewModel()
               {
                   Id = i.Id,

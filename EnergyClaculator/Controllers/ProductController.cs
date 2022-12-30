@@ -1,4 +1,5 @@
 ﻿using EnergyCalculator.Core;
+using EnergyCalculator.Core.Constants;
 using EnergyCalculator.Core.Contracts;
 using EnergyCalculator.Core.Models.Product;
 using EnergyCalculator.Infrastructure.Data.Common;
@@ -8,8 +9,7 @@ using System.Data;
 
 namespace EnergyClaculator.Controllers
 {
-    [Authorize]
-    public class ProductController : Controller
+     public class ProductController : Controller
     {
          private readonly IRepository repo;
 

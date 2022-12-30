@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using EnergyCalculator.Core.Constants;
 
 namespace EnergyClaculator.Controllers
 {
@@ -36,8 +37,7 @@ namespace EnergyClaculator.Controllers
         {
             var model = new ReceiptViewModel();
 
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var currentUserID = getCurrentUserId();
 
             TempData["UserId"] = currentUserID;
             return View(model);
@@ -68,12 +68,17 @@ namespace EnergyClaculator.Controllers
 
         public async Task<IActionResult> MyReceipts()
         {
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var currentUserID = getCurrentUserId();
 
             var ingredients = await receiptService.MyReceipts(currentUserID);
 
             return View(ingredients);
+        }
+
+        public string getCurrentUserId()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            return currentUser?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }
 }
