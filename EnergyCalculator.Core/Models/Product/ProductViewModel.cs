@@ -17,6 +17,6 @@ namespace EnergyCalculator.Core.Models.Product
         [Range(1, 10000, ErrorMessage = "The field must be greater than 0 !")]
         [Display(Name = "Calories Per 100grammes")]
        
-         public int CaloriesPer100grams { get; set; }
+         public double CaloriesPer100grams { get; set; }
     }
 }

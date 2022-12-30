@@ -71,7 +71,7 @@ namespace EnergyClaculator.Controllers
                return RedirectToAction("Add", "Ingredient", new { area = "" });
                }
 
-            int TotalCalories = await ingredientDervice.CalculateTotalCaloriesByProduct(model.ProductId, model.QuantityForIngredient);
+            double TotalCalories = await ingredientDervice.CalculateTotalCaloriesByProduct(model.ProductId, model.QuantityForIngredient);
 
             model.TotalCalories = TotalCalories;
 

@@ -28,9 +28,9 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
          public string UserId { get; set; }= null!;
 
         [Required]
-        public int QuantityForIngredient { get; set; }
+        public double QuantityForIngredient { get; set; }
 
          [Required]
-         public int TotalCalories { get; set; }
+         public double TotalCalories { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace EnergyCalculator.Core.Models.Ingredient
 
         public string Product { get; init; } = null!;
 
-        public int QuantityForIngredient { get; set; }
+        public double QuantityForIngredient { get; set; }
 
-        public int TotalQuantity { get; set; }
+        public double TotalQuantity { get; set; }
 
     }
 }

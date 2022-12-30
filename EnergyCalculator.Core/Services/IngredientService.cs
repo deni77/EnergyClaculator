@@ -7,6 +7,7 @@ using EnergyCalculator.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,7 +71,11 @@ namespace EnergyCalculator.Core.Services
 
         public async Task<IEnumerable<IngredientProductModel>> AllProducts()
         {
-            return await repo.AllReadonly<Product>()
+            var result = new List<IngredientProductModel>();
+
+            result.Add(new IngredientProductModel() {  Id=0, Name=""});
+
+            var list= await repo.AllReadonly<Product>()
                .OrderBy(c => c.Name)
                .Select(c => new IngredientProductModel()
                {
@@ -78,6 +83,10 @@ namespace EnergyCalculator.Core.Services
                    Name = c.Name
                })
                .ToListAsync();
+
+            result.AddRange(list);
+
+            return result;
         }
 
         public async Task<IEnumerable<IngredientReceiptModel>> AllReceipts()
@@ -92,7 +101,7 @@ namespace EnergyCalculator.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<int> CalculateTotalCaloriesByProduct(int productId, int totalForIngredient)
+        public async Task<double> CalculateTotalCaloriesByProduct(double productId, double totalForIngredient)
         {
             var product = await repo.AllReadonly<Product>()
                 .FirstOrDefaultAsync(c => c.Id == productId);

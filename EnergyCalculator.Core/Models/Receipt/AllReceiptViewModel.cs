@@ -12,7 +12,7 @@ namespace EnergyCalculator.Core.Models.Receipt
         public int Id { get; init; }
 
            public string Name { get; set; } = null!;
-       public int TotalQuantity { get; set; }
+       public double TotalQuantity { get; set; }
 
     }
 }

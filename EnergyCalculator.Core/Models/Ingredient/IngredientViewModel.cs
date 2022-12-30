@@ -22,10 +22,10 @@ namespace EnergyCalculator.Core.Models.Ingredient
          [Display(Name = "Quantity in GRAMMES For the Ingredient ")]
           [Range(100, 10000, ErrorMessage = "The field must be greater than 100 !")]
        
-        public int QuantityForIngredient { get; set; }
+        public double QuantityForIngredient { get; set; }
 
 
-        public int TotalCalories { get; set; } = 0;
+        public double TotalCalories { get; set; } = 0;
 
         public string UserId { get; set; }
 
