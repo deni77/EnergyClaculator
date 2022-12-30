@@ -63,8 +63,7 @@ namespace EnergyCalculator.Core.Services
                     Receipt = i.Receipt.Name,
                     QuantityForIngredient = i.QuantityForIngredient,
                     TotalQuantity = i.TotalCalories
-                    // UserId=
-                })
+                     })
                 .ToListAsync();
 
             return ingredients;
@@ -147,6 +146,37 @@ namespace EnergyCalculator.Core.Services
                   TotalQuantity = i.TotalCalories
               })
               .ToListAsync();
+        }
+
+        public async Task<AllIngredientByReceipt> SearchIngredientByReceipt(int receiptId)
+        {
+            var receipt = await repo.AllReadonly<Receipt>()
+                .Where(u => u.Id == receiptId).FirstOrDefaultAsync();
+
+           var ingredients= await repo.AllReadonly<Ingredient>()
+                .Where(u => u.ReceiptId == receiptId)
+                 .OrderBy(i => i.ReceiptId)
+                 .Select(i=>new AllIngredientViewModel()
+                 {
+                     Id = i.Id,
+                     Product = i.Product.Name,
+                     Receipt = i.Receipt.Name,
+                     QuantityForIngredient = i.QuantityForIngredient,
+                     TotalQuantity = i.TotalCalories
+                 })
+                 .ToListAsync();
+
+
+           var model= new AllIngredientByReceipt()
+            {
+
+                ReceiptName = receipt.Name,
+                TotalCaloriesForReceipt = receipt.TotalCalories,
+                Ingredients = ingredients
+            };
+
+            return  model;
+              
         }
     }
 }

@@ -51,6 +51,32 @@ namespace EnergyClaculator.Controllers
             return View(model);
         }
 
+         [HttpGet]
+        public async Task<IActionResult> SearchByReceipt()
+        { 
+             var model = new IngredientBySearchViewModel()
+            {
+                Receipts = await ingredientDervice.AllReceipts()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchByReceipt(IngredientBySearchViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                //model.Products = await ingredientDervice.AllProducts();
+                model.Receipts = await ingredientDervice.AllReceipts();
+                return View(model);
+            }
+
+            var ingredients = await ingredientDervice.SearchIngredientByReceipt(model.ReceiptId);
+
+            return View("IngredientsByReceipt",ingredients);
+        }
+            
         [HttpPost]
         public async Task<IActionResult> Add(IngredientViewModel model)
         {

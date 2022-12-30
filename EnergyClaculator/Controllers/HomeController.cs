@@ -15,6 +15,10 @@ namespace EnergyClaculator.Controllers
 
         public IActionResult Index()
         {
+             if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            }
             return View();
         }
 
