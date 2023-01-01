@@ -3,35 +3,33 @@
 <h2 class="text-center">All Ingredients in the receipt <spam style="color:red">@Model.ReceiptName</spam></h2>
 
 <hr />
-<hr />
 @if (Model.Ingredients.Any())
 {
-                <table class="table table-striped">
-                       <thead>
-                         <tr>
-                            <th style="width:600px"><label>Product</label></th>
-                                <th style="width:400px"><label>Quantity in grammes</label></th>
-                            <th><label>Total Calories for the product</label></th>
-                          </tr>
-                       </thead>
-                      <tbody>           
-@foreach (var ingre in Model.Ingredients)
-{
-                        <tr>
-                           <td><label>@ingre.Product</label></td>
-                           <td><label>@ingre.QuantityForIngredient</label></td>
-                           <td><label>@ingre.TotalQuantity</label></td>
-                        </tr>        
-}
-                      </tbody>
-                 </table>
-<hr />
+       <table class="table table-striped table-bordered table-hover">
+          <thead class="table-dark">
+              <tr>
+                 <th style="width:600px"><label>Product</label></th>
+                 <th style="width:400px"><label>Quantity in grammes</label></th>
+                  <th><label>Total Calories for the product</label></th>
+               </tr>
+          </thead>
+           <tbody>           
+    @foreach (var ingre in Model.Ingredients)
+    {
+              <tr>
+                <td><label>@ingre.Product</label></td>
+                <td><label>@ingre.QuantityForIngredient</label></td>
+                <td><label>@ingre.TotalQuantity</label></td>
+             </tr>        
+    }
+         </tbody>
+     </table>
 <hr />
 <h2 class="text-center">Total Calories for the receipt: <spam style="color:red">@Model.TotalCaloriesForReceipt</spam></h2>
 }
 else
 {
-    <h4 class="text-center">No ingredients in this receipt !</h4>
+ <h4 class="text-center">No ingredients in this receipt !</h4>
 }
 
 

@@ -5,36 +5,37 @@
     ViewData["Title"] = "All products";
 }
 
+<hr />
+
 <h2 class="text-center">@ViewBag.Title</h2>
 @if(User?.Identity?.IsAuthenticated ?? false)
-                    {
-<hr />
+ {
+
 <a asp-area="" asp-controller="Product" asp-action="Add" class="btn btn-success">Add new Product</a>
 <hr/>
-                    }
+ }
 
 @if (Model.Any())
 {
-                           <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th><label>Name</label></th>
-                                         <th style="width:600px"><label>Calories Per 100grammes</label></th>
-                                    </tr>
-                            </thead>
-                            <tbody>           
-            @foreach (var pr in Model)
-            {
-                                     <tr>
-                                        <td><label>@pr.Name</label></td>
-                                                <td><label>@pr.CaloriesPer100grams</label></td>
-                                                        </tr>
-            }
-
-                            </tbody>
-                        </table>
+          <table class="table table-striped table-hover table-bordered">
+             <thead class="table-dark">
+                <tr>
+                 <th><label>Name</label></th>
+                 <th style="width:600px"><label>Calories Per 100grammes</label></th>
+                </tr>
+             </thead>
+             <tbody>           
+@foreach (var pr in Model)
+{
+             <tr>
+                  <td><label>@pr.Name</label></td>
+                  <td><label>@pr.CaloriesPer100grams</label></td>
+             </tr>
+}
+              </tbody>
+          </table>
 }
 else
 {
-                            <h3 class="text-center">You have no products yet!</h3>
+         <h3 class="text-center">You have no products yet!</h3>
 }

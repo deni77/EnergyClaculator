@@ -12,30 +12,29 @@
 
 @if (Model.Any())
 {
-                           <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th><label>Receipt</label></th>
-                                     <th><label>Product</label></th>
-                                     <th><label>Quantity in grammes</label></th>
-                                    <th><label>Total Calories for the product</label></th>
-                                 </tr>
-                            </thead>
-                            <tbody>           
-            @foreach (var ingr in Model)
-            {
-                                     <tr>
-                                        <td><label>@ingr.Receipt</label></td>
-                                                <td><label>@ingr.Product</label></td>
-                                                        <td><label>@ingr.QuantityForIngredient</label></td>
-                                                                <td><label>@ingr.TotalQuantity</label></td>
-                                    </tr>
-            }
-
-                            </tbody>
-                        </table>
+          <table class="table table-striped table-hover table-bordered">
+             <thead class="table-dark">
+               <tr>
+                  <th><label>Receipt</label></th>
+                  <th><label>Product</label></th>
+                  <th><label>Quantity in grammes</label></th>
+                  <th><label>Total Calories for the product</label></th>
+                </tr>
+             </thead>
+             <tbody>           
+@foreach (var ingr in Model)
+ {
+            <tr>
+              <td><label>@ingr.Receipt</label></td>
+              <td><label>@ingr.Product</label></td>
+              <td><label>@ingr.QuantityForIngredient</label></td>
+              <td><label>@ingr.TotalQuantity</label></td>
+            </tr>
+ }
+            </tbody>
+          </table>
 }
 else
 {
-                            <h3 class="text-center">You have no ingredients yet!</h3>
+   <h3 class="text-center">You have no ingredients yet!</h3>
 }

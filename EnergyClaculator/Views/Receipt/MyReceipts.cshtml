@@ -5,33 +5,33 @@
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
-<hr />
 
+<hr />
 <a asp-area="" asp-controller="Receipt" asp-action="Add" class="btn btn-success">Add new Receipt</a>
+<hr />
 
 @if (Model.Any())
 {
-                                       <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                    <th style="width:650px"><label>Name</label></th>
-                                                     <th><label>Total Calories for the receipt</label></th>
-                                                </tr>
-                                        </thead>
-                                        <tbody>           
-            @foreach (var receipt in Model)
-            {
-                                                             <tr>
-                                                                        <td><label>@receipt.Name</label></td>
-                                                                                <td><label>@receipt.TotalQuantity</label></td>
-                                                                                </tr>
-            }
-
-                                        </tbody>
-                                    </table>
+        <table class="table table-striped table-hover table-bordered">
+             <thead class="table-dark">
+                 <tr>
+                    <th style="width:650px"><label>Name</label></th>
+                    <th><label>Total Calories for the receipt</label></th>
+                 </tr>
+             </thead>
+             <tbody>           
+@foreach (var receipt in Model)
+{
+                <tr>
+                     <td><label>@receipt.Name</label></td>
+                     <td><label>@receipt.TotalQuantity</label></td>
+                 </tr>
+}
+             </tbody>
+        </table>
 }
 else
 {
-                                        <h3 class="text-center">You have no receipt yet!</h3>
+     <h3 class="text-center">You have no receipt yet!</h3>
 }
 

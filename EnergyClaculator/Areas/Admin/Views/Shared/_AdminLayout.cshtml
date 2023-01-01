@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @*<link rel="stylesheet" href="~/ExpeditionFuelsHub.styles.css" asp-append-version="true" />
-   *@ <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/ExpeditionFuelsHub.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <partial name="_UserMessages" />
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                @if (User.IsInRole("Admin") || User.IsInRole("Fdispenser"))
+                @if (User.IsInRole("Admin"))
                 {
                         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Energy Calculator</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,24 +30,24 @@
 
 
 
-       <div class="container">
+    <div class="container">
         <div class="mt-4 p-5 bg-light text-center">
-        <h1>Administaration area</h1>
+                <h2>Administaration area</h2>
         </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.UtcNow.Year - Energy Calculator
-        </div>
-    </footer>
+    <footer class="footer border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - EnergyCalculator 
+            </div>
+     </footer>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/toastr/toastr.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
