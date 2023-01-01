@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace EnergyCalculator.Core.Models.Ingredient
 {
-    public class AllIngredientByReceipt :AllIngredientViewModel
+    public class AllIngredientByReceipt : AllIngredientViewModel
     {
-        public string ReceiptName { get; set; }
+        public string ReceiptName { get; set; } = null!;
 
-        public double TotalCaloriesForReceipt { get; set; }
+        public string TotalCaloriesForReceipt { get; set; }= null!;
 
-         public IEnumerable<AllIngredientViewModel> Ingredients { get; set; }
-                           = new List<AllIngredientViewModel>();
+        public IEnumerable<AllIngredientViewModel> Ingredients { get; set; }
+                          = new List<AllIngredientViewModel>();
     }
 }

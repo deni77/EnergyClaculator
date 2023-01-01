@@ -24,6 +24,6 @@ namespace EnergyCalculator.Core.Contracts
         Task<IEnumerable<AllIngredientViewModel>> MyIngredients(string userId);
         Task<double> CalculateTotalCaloriesByProduct(double productId, double totalForIngredient);
 
-       Task<AllIngredientByReceipt> SearchIngredientByReceipt(int receiptId);
+        Task<AllIngredientByReceipt> SearchIngredientByReceipt(int receiptId);
     }
 }

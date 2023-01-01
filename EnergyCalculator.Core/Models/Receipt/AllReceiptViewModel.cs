@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EnergyCalculator.Core.Models.Receipt
+﻿namespace EnergyCalculator.Core.Models.Receipt
 {
     public class AllReceiptViewModel
     {
         public int Id { get; init; }
 
-           public string Name { get; set; } = null!;
-       public double TotalQuantity { get; set; }
+        public string Name { get; set; } = null!;
+        public string TotalQuantity { get; set; }= null!;
 
     }
 }

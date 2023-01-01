@@ -67,7 +67,6 @@ namespace EnergyClaculator.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //model.Products = await ingredientDervice.AllProducts();
                 model.Receipts = await ingredientDervice.AllReceipts();
                 return View(model);
             }
@@ -103,7 +102,12 @@ namespace EnergyClaculator.Controllers
 
             TempData[MessageConstant.SuccessMessage] = "New Ingredient is added !";
 
-            return RedirectToAction(nameof(Index));
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(MyIngredients));
         }
 
         public string getCurrentUserId()

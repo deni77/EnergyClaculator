@@ -2,7 +2,7 @@
 
 <h2 class="text-center">Add new Ingredient</h2>
 @{
-    Model.UserId = (string)TempData["UserId"];
+    Model.UserId = TempData["UserId"]?.ToString() ?? string.Empty ;
 }
 
 <div class="row">

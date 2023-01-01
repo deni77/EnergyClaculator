@@ -4,7 +4,6 @@ using System.Data;
 
 namespace EnergyCalculator.Areas.Admin.Controllers
 {
-    //  [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class AdminController : Controller
     {

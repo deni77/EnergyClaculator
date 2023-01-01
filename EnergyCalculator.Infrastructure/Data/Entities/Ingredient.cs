@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnergyCalculator.Infrastructure.Data.Entities
 {
@@ -13,24 +7,24 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
     {
         public int Id { get; set; }
 
-         [Required]
+        [Required]
         public int ProductId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; init; } = null!;
 
-          [Required]
+        [Required]
         public int ReceiptId { get; set; }
 
         [ForeignKey(nameof(ReceiptId))]
         public Receipt Receipt { get; init; } = null!;
 
-         public string UserId { get; set; }= null!;
+        public string UserId { get; set; } = null!;
 
         [Required]
         public double QuantityForIngredient { get; set; }
 
-         [Required]
-         public double TotalCalories { get; set; }
+        [Required]
+        public double TotalCalories { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace EnergyCalculator.Infrastructure.Data.Configuration
 
             users.Add(admin);
 
-             var user = new ApplicationUser()
+            var user = new ApplicationUser()
             {
                 Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                 UserName = "user",

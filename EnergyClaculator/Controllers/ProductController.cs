@@ -9,9 +9,9 @@ using System.Data;
 
 namespace EnergyClaculator.Controllers
 {
-     public class ProductController : Controller
+    public class ProductController : Controller
     {
-         private readonly IRepository repo;
+        private readonly IRepository repo;
 
         private readonly IProductService productService;
 
@@ -29,7 +29,7 @@ namespace EnergyClaculator.Controllers
         }
 
         [HttpGet]
-         public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add()
         {
             var model = new ProductViewModel();
 
@@ -44,17 +44,18 @@ namespace EnergyClaculator.Controllers
                 return View(model);
             }
 
-            if (await productService.Exists(model.Name)==true)
+            if (await productService.Exists(model.Name) == true)
             {
                 TempData[MessageConstant.ErrorMessage] = "Product with this name is already added !";
-               return RedirectToAction("Add", "Product", new { area = "" });
+
+                return RedirectToAction("Add", "Product", new { area = "" });
             }
 
-           int id = await productService.Add(model);
+            int id = await productService.Add(model);
 
             TempData[MessageConstant.SuccessMessage] = "New product is added !";
 
-            return RedirectToAction(nameof(Index),new { id } ); 
+            return RedirectToAction(nameof(Index), new { id });
         }
     }
 }

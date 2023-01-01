@@ -10,11 +10,11 @@ namespace EnergyCalculator.Core.Models.Ingredient
 {
     public class IngredientBySearchViewModel
     {
-         [Display(Name = "Choose a receipt ")]
+        [Display(Name = "Choose a receipt ")]
         [Required]
-        [Range(1, 1000000, ErrorMessage ="The receipt field is required !")]
+        [Range(1, 1000000, ErrorMessage = "The receipt is required !")]
         public int ReceiptId { get; init; }
-         public IEnumerable<IngredientReceiptModel> Receipts { get; set; }
-                           = new List<IngredientReceiptModel>();
+        public IEnumerable<IngredientReceiptModel> Receipts { get; set; }
+                          = new List<IngredientReceiptModel>();
     }
 }

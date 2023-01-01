@@ -16,10 +16,10 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         [StringLength(30)]
         public string Name { get; set; } = null!;
 
-       public double TotalCalories { get; set; }
+        public double TotalCalories { get; set; }
 
-         public string UserId { get; set; }= null!;
+        public string UserId { get; set; } = null!;
 
-        public List<Ingredient> Ingredients  { get; set; } = new List<Ingredient>();
+        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
 }

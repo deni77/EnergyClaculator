@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EnergyCalculator.Infrastructure.Data.Entities
 {
@@ -14,13 +7,13 @@ namespace EnergyCalculator.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-         [StringLength(30)]
-        public string Name { get; set; }= null!;
+        [StringLength(30)]
+        public string Name { get; set; } = null!;
 
-         [Required]
-           public double CaloriesPer100grams { get; set; }
+        [Required]
+        public double CaloriesPer100grams { get; set; }
 
-        public List<Ingredient> Ingredients  { get; set; } = new List<Ingredient>();
+        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
     }
 }

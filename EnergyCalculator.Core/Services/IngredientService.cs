@@ -5,13 +5,6 @@ using EnergyCalculator.Core.Models.Receipt;
 using EnergyCalculator.Infrastructure.Data.Common;
 using EnergyCalculator.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace EnergyCalculator.Core.Services
 {
@@ -55,15 +48,15 @@ namespace EnergyCalculator.Core.Services
         public async Task<IEnumerable<AllIngredientViewModel>> All()
         {
             var ingredients = await repo.AllReadonly<Ingredient>()
-                .OrderBy(i => i.ReceiptId).ThenBy(i=>i.ProductId)
+                .OrderBy(i => i.Receipt.Name).ThenBy(i => i.Product.Name)
                 .Select(i => new AllIngredientViewModel()
                 {
                     Id = i.Id,
                     Product = i.Product.Name,
                     Receipt = i.Receipt.Name,
                     QuantityForIngredient = i.QuantityForIngredient,
-                    TotalQuantity = i.TotalCalories
-                     })
+                    TotalQuantity = i.TotalCalories.ToString("0.00")
+                })
                 .ToListAsync();
 
             return ingredients;
@@ -73,9 +66,9 @@ namespace EnergyCalculator.Core.Services
         {
             var result = new List<IngredientProductModel>();
 
-            result.Add(new IngredientProductModel() {  Id=0, Name=""});
+            result.Add(new IngredientProductModel() { Id = 0, Name = "" });
 
-            var list= await repo.AllReadonly<Product>()
+            var list = await repo.AllReadonly<Product>()
                .OrderBy(c => c.Name)
                .Select(c => new IngredientProductModel()
                {
@@ -91,18 +84,18 @@ namespace EnergyCalculator.Core.Services
 
         public async Task<IEnumerable<IngredientReceiptModel>> AllReceipts()
         {
-             var result = new List<IngredientReceiptModel>();
+            var result = new List<IngredientReceiptModel>();
 
-            result.Add(new IngredientReceiptModel() {  Id=0, Name=""});
+            result.Add(new IngredientReceiptModel() { Id = 0, Name = "" });
 
-           var list= await repo.AllReadonly<Receipt>()
-                .OrderBy(c => c.Name)
-                .Select(c => new IngredientReceiptModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
-                .ToListAsync();
+            var list = await repo.AllReadonly<Receipt>()
+                 .OrderBy(c => c.Name)
+                 .Select(c => new IngredientReceiptModel()
+                 {
+                     Id = c.Id,
+                     Name = c.Name
+                 })
+                 .ToListAsync();
 
             result.AddRange(list);
 
@@ -114,7 +107,7 @@ namespace EnergyCalculator.Core.Services
             var product = await repo.AllReadonly<Product>()
                 .FirstOrDefaultAsync(c => c.Id == productId);
 
-            return product.CaloriesPer100grams * totalForIngredient / 100;
+            return product?.CaloriesPer100grams  ?? 0 * totalForIngredient / 100;
         }
 
         public async Task<bool> ExistsIngredient(int productId, int receiptId)
@@ -134,16 +127,16 @@ namespace EnergyCalculator.Core.Services
 
         public async Task<IEnumerable<AllIngredientViewModel>> MyIngredients(string userId)
         {
-            return  await repo.AllReadonly<Ingredient>()
-                .Where(u=>u.UserId==userId)
-                 .OrderBy(i => i.ReceiptId)//.ThenBy(i=>i.ProductId)
+            return await repo.AllReadonly<Ingredient>()
+                .Where(u => u.UserId == userId)
+                 .OrderBy(i => i.Receipt.Name).ThenBy(i => i.Product.Name)
               .Select(i => new AllIngredientViewModel()
               {
                   Id = i.Id,
                   Product = i.Product.Name,
                   Receipt = i.Receipt.Name,
                   QuantityForIngredient = i.QuantityForIngredient,
-                  TotalQuantity = i.TotalCalories
+                  TotalQuantity = i.TotalCalories.ToString("0.00")
               })
               .ToListAsync();
         }
@@ -153,30 +146,30 @@ namespace EnergyCalculator.Core.Services
             var receipt = await repo.AllReadonly<Receipt>()
                 .Where(u => u.Id == receiptId).FirstOrDefaultAsync();
 
-           var ingredients= await repo.AllReadonly<Ingredient>()
-                .Where(u => u.ReceiptId == receiptId)
-                 .OrderBy(i => i.ReceiptId)
-                 .Select(i=>new AllIngredientViewModel()
-                 {
-                     Id = i.Id,
-                     Product = i.Product.Name,
-                     Receipt = i.Receipt.Name,
-                     QuantityForIngredient = i.QuantityForIngredient,
-                     TotalQuantity = i.TotalCalories
-                 })
-                 .ToListAsync();
+            var ingredients = await repo.AllReadonly<Ingredient>()
+                 .Where(u => u.ReceiptId == receiptId)
+                  .OrderBy(i => i.ReceiptId)
+                  .Select(i => new AllIngredientViewModel()
+                  {
+                      Id = i.Id,
+                      Product = i.Product.Name,
+                      Receipt = i.Receipt.Name,
+                      QuantityForIngredient = i.QuantityForIngredient,
+                      TotalQuantity = i.TotalCalories.ToString("0.00")
+                  })
+                  .ToListAsync();
 
 
-           var model= new AllIngredientByReceipt()
+            var model = new AllIngredientByReceipt()
             {
 
-                ReceiptName = receipt.Name,
-                TotalCaloriesForReceipt = receipt.TotalCalories,
+                ReceiptName = receipt?.Name ?? string.Empty,
+                TotalCaloriesForReceipt = receipt?.TotalCalories.ToString("0.00") ?? string.Empty,
                 Ingredients = ingredients
             };
 
-            return  model;
-              
+            return model;
+
         }
     }
 }

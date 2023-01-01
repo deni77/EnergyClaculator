@@ -1,41 +1,40 @@
 ﻿@model AllIngredientByReceipt
 
-<h2 class="text-center">All Ingredients by the receipt <spam style="color:red">@Model.ReceiptName</spam></h2>
+<h2 class="text-center">All Ingredients in the receipt <spam style="color:red">@Model.ReceiptName</spam></h2>
 
 <hr />
 <hr />
 @if (Model.Ingredients.Any())
 {
-    <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                         <th><label>Product</label></th>
-                                         <th><label>Quantity in grammes</label></th>
-                                        <th><label>Total Calories for the product</label></th>
-                                     </tr>
-                                </thead>
-                                <tbody>           
-            @foreach (var ingre in Model.Ingredients)
-            {
-                          <tr>
-                                                      <td><label>@ingre.Product</label></td>
-                                                                <td><label>@ingre.QuantityForIngredient</label></td>
-                                                                        <td><label>@ingre.TotalQuantity</label></td>
-                                            </tr>        
-                                                                                
-            }
-
-                     </tbody>
-                     </table>
-}
-else
+                <table class="table table-striped">
+                       <thead>
+                         <tr>
+                            <th style="width:600px"><label>Product</label></th>
+                                <th style="width:400px"><label>Quantity in grammes</label></th>
+                            <th><label>Total Calories for the product</label></th>
+                          </tr>
+                       </thead>
+                      <tbody>           
+@foreach (var ingre in Model.Ingredients)
 {
-              <h3 class="text-center">You have no ingredient in this receipt yet!</h3>
+                        <tr>
+                           <td><label>@ingre.Product</label></td>
+                           <td><label>@ingre.QuantityForIngredient</label></td>
+                           <td><label>@ingre.TotalQuantity</label></td>
+                        </tr>        
 }
-
+                      </tbody>
+                 </table>
 <hr />
 <hr />
 <h2 class="text-center">Total Calories for the receipt: <spam style="color:red">@Model.TotalCaloriesForReceipt</spam></h2>
+}
+else
+{
+    <h4 class="text-center">No ingredients in this receipt !</h4>
+}
+
+
 <div class="text-center">
-<a href="https://localhost:7175/Ingredient/SearchByReceipt"><button >Cancel</button></a>
+    <input class="btn btn-primary mt-3" type="button" value="Back" onclick="history.back()"/>
 </div>

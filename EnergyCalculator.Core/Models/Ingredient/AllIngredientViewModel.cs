@@ -10,7 +10,7 @@ namespace EnergyCalculator.Core.Models.Ingredient
 {
     public class AllIngredientViewModel
     {
-         public int Id { get; init; }
+        public int Id { get; init; }
 
         public string Receipt { get; init; } = null!;
 
@@ -19,7 +19,7 @@ namespace EnergyCalculator.Core.Models.Ingredient
 
         public double QuantityForIngredient { get; set; }
 
-        public double TotalQuantity { get; set; }
+        public string TotalQuantity { get; set; } = null!;
 
     }
 }

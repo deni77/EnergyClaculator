@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnergyCalculator.Infrastructure.Data.Common
 {
@@ -133,7 +128,7 @@ namespace EnergyCalculator.Infrastructure.Data.Common
         /// <returns>Single record</returns>
         public async Task<T> GetByIdAsync<T>(object id) where T : class
         {
-            return await DbSet<T>().FindAsync(id);
+            return await DbSet<T>().FindAsync(id);   
         }
 
         public async Task<T> GetByIdsAsync<T>(object[] id) where T : class

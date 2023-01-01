@@ -40,6 +40,7 @@ namespace EnergyClaculator.Controllers
             var currentUserID = getCurrentUserId();
 
             TempData["UserId"] = currentUserID;
+
             return View(model);
         }
 
@@ -57,13 +58,16 @@ namespace EnergyClaculator.Controllers
                 return RedirectToAction("Add", "Receipt", new { area = "" });
             }
 
-
-
             int id = await receiptService.Add(model);
 
             TempData[MessageConstant.SuccessMessage] = "New receipt is added !";
 
-            return RedirectToAction(nameof(Index), new { id });
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction(nameof(Index), new { id });
+            }
+
+            return RedirectToAction(nameof(MyReceipts));
         }
 
         public async Task<IActionResult> MyReceipts()
@@ -78,6 +82,7 @@ namespace EnergyClaculator.Controllers
         public string getCurrentUserId()
         {
             ClaimsPrincipal currentUser = this.User;
+
             return currentUser?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }

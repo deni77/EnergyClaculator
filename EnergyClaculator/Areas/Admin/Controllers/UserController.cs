@@ -60,10 +60,7 @@ namespace EnergyCalculator.Areas.Admin.Controllers
 
 
             if (result.Succeeded)
-            {// ako sled register трябва да логваме User
-             // await signInManager.SignInAsync(user, isPersistent: false);
-             // return RedirectToAction("All", "Movies");
-
+            {
                 await userService.AddToRoleUser(user);
 
                 TempData[MessageConstant.SuccessMessage] = "You are registered in the system !";
@@ -86,7 +83,6 @@ namespace EnergyCalculator.Areas.Admin.Controllers
             if (User?.Identity?.IsAuthenticated ?? false)
             {
                 return RedirectToAction("Index", "Ingredient", new { area = "" });
-                // return RedirectToAction("Index", "Home");
             }
 
             var model = new LoginViewModel() { };
@@ -133,8 +129,5 @@ namespace EnergyCalculator.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Home", new { area = "" });
         }
-
-
-
     }
 }

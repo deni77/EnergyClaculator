@@ -12,13 +12,13 @@ namespace EnergyCalculator.Core.Contracts
 {
     public interface IReceiptService
     {
-          Task<IEnumerable<AllReceiptViewModel>> All();
+        Task<IEnumerable<AllReceiptViewModel>> All();
 
-         Task<int> Add(ReceiptViewModel model);
+        Task<int> Add(ReceiptViewModel model);
         Task<bool> Exists(string name);
 
         Task<Receipt> GetReceiptById(int id);
 
-         Task<IEnumerable<AllReceiptViewModel>> MyReceipts(string userId);
+        Task<IEnumerable<AllReceiptViewModel>> MyReceipts(string userId);
     }
 }

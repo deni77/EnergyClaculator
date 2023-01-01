@@ -23,11 +23,11 @@ namespace EnergyCalculator.Core.Services
 
         public async Task<int> Add(ProductViewModel model)
         {
-             var product = new Product()
+            var product = new Product()
             {
-                  Name=model.Name.ToLower(),
-                   CaloriesPer100grams=model.CaloriesPer100grams
-             };
+                Name = model.Name.ToLower(),
+                CaloriesPer100grams = model.CaloriesPer100grams
+            };
 
             await repo.AddAsync(product);
             await repo.SaveChangesAsync();
@@ -38,10 +38,10 @@ namespace EnergyCalculator.Core.Services
         public async Task<IEnumerable<AllProductViewModel>> All()
         {
             var products = await repo.AllReadonly<Product>()
-                .OrderBy(i=>i.Name)
+                .OrderBy(i => i.Name)
                 .Select(i => new AllProductViewModel()
                 {
-                     Id = i.Id,
+                    Id = i.Id,
                     CaloriesPer100grams = i.CaloriesPer100grams,
                     Name = i.Name
                 })
@@ -52,9 +52,9 @@ namespace EnergyCalculator.Core.Services
         public async Task<bool> Exists(string name)
         {
             var res = await repo.AllReadonly<Product>()
-                 .Where(u=>u.Name==name.ToLower()).ToListAsync();
+                 .Where(u => u.Name == name.ToLower()).ToListAsync();
 
-            if (res.Count!=0)
+            if (res.Count != 0)
             {
                 return true;
             }
