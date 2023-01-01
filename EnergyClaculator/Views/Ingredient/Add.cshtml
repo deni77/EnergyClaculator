@@ -4,7 +4,18 @@
 @{
     Model.UserId = TempData["UserId"]?.ToString() ?? string.Empty ;
 }
+<hr/>
+@if(User.IsInRole("Admin"))
+{
+    <p style="font-size:18px;color:red" class="text-center"><u>If a receipt is missing, add if from Receipts -> Add new receipt !</u></p>
+}
+else
+{
+    <p style="font-size:18px;color:red" class="text-center"><u>If a receipt is missing, add if from MyReceipts -> Add new receipt !</u></p>
+}
 
+
+<p style="font-size:18px;color:red" class="text-center"><u>If a product is missing, add if from Products -> Add new product !</u></p>
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">

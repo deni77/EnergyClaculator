@@ -23,6 +23,10 @@ namespace EnergyCalculator.Infrastructure
         {
             builder.ApplyConfiguration(new UserConfiguration());
 
+            builder.ApplyConfiguration(new ProductConfiguration());
+
+            builder.ApplyConfiguration(new ReceiptConfiguration());
+
             base.OnModelCreating(builder);
 
             CreateRoles(builder);

@@ -94,16 +94,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "87612856-d498-4529-b453-bgrfd8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "641fef9c-7534-4a6f-8864-fb86b4a40841",
+                            ConcurrencyStamp = "3901ec5f-5290-4869-8fa3-c6c5c922fbf9",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELk2H2xRHn40KjIoQydO+zm5ISdWzKwXZj9DAZwghRcTy3wl9gZNccEH87Tk8MCj8g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENliEuE+4co6C3aSpW5k2gNaA9hNfRfhZV6wVF6g0AXvtTe2nx3d1IgQlOBg6Opeqg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d1146cda-e786-4e4c-a9cb-24a0a6e5bd99",
+                            SecurityStamp = "7f6df5a7-81e4-46ed-96d3-042727b32a57",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -111,16 +111,16 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f5bb641f-5c2c-4d9a-bb77-647098226c01",
+                            ConcurrencyStamp = "d4eb751d-1077-4915-80ab-dafa448d892a",
                             Email = "user@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@MAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGMjRJSeKr+MA5xMJw2w7PteCOUkPBrFB86ePmWr7QglRvatWy5272fNfx1HwUl6NQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELk5M20F0FaXDScJfeVDNhGVP88MdKBIxTHO+uI1lQF2KjU+MasNysxAXJeTVjAsnQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4a6a36ac-32f9-4cc0-ad72-d37b9236b66c",
+                            SecurityStamp = "d7876a5c-7105-4a8f-8302-88585ff21227",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
@@ -178,6 +178,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CaloriesPer100grams = 200.0,
+                            Name = "Swinsko "
+                        });
                 });
 
             modelBuilder.Entity("EnergyCalculator.Infrastructure.Data.Entities.Receipt", b =>
@@ -203,6 +211,22 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Receipts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Swinsko sy zele",
+                            TotalCalories = 0.0,
+                            UserId = "87612856 - d498 - 4529 - b453 - bgrfd8395082"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Brocoli sys smetana",
+                            TotalCalories = 0.0,
+                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -235,14 +259,14 @@ namespace EnergyCalculator.Infrastructure.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "26ee4db5-1243-4a23-a935-b23e15f51299",
+                            ConcurrencyStamp = "e6c2b66d-4c0a-4099-84c8-20517805f742",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2787b74e-3c0v-466f-m8af-654d56fd9010",
-                            ConcurrencyStamp = "17f014ca-1c17-46f8-bf14-6d83dda31e72",
+                            ConcurrencyStamp = "b77e9c63-8ba6-44dd-94e0-2d8ad2bb6b68",
                             Name = "User",
                             NormalizedName = "User"
                         });

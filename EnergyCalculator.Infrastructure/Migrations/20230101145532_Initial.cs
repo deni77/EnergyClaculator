@@ -56,7 +56,7 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CaloriesPer100grams = table.Column<int>(type: "int", nullable: false)
+                    CaloriesPer100grams = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,7 +70,7 @@ namespace EnergyCalculator.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    TotalQuantity = table.Column<int>(type: "int", nullable: false),
+                    TotalCalories = table.Column<double>(type: "float", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -190,11 +190,11 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     ReceiptId = table.Column<int>(type: "int", nullable: false),
-                    QuantityForIngredient = table.Column<int>(type: "int", nullable: false),
-                    TotalQuantity = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QuantityForIngredient = table.Column<double>(type: "float", nullable: false),
+                    TotalCalories = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -218,8 +218,8 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "1e395b1f-e770-4ce4-b56d-a9157042135d", "User", "User" },
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "191b5426-dde5-4cb4-a120-3dbcc2802e6a", "Admin", "ADMIN" }
+                    { "2787b74e-3c0v-466f-m8af-654d56fd9010", "b77e9c63-8ba6-44dd-94e0-2d8ad2bb6b68", "User", "User" },
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "e6c2b66d-4c0a-4099-84c8-20517805f742", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -227,8 +227,22 @@ namespace EnergyCalculator.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsActive", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "b300b6e8-9722-4c43-867c-9df6442229c9", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAEEbpleRYIeIFvkGQLe/bvP45ZkMoFJRf9IW5rmx4o7vQyASHxnivOa0Byz7y3z3+zQ==", null, false, "928ba0cd-ed5c-4321-98f7-99608e072832", false, "user" },
-                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "2edb665d-99c6-40cd-bf22-e46ef7522384", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAECDKq0kBO3cHszw5Dd+2/sxXpEF8qmKtraIEjEXUug0Ec2cdMALL9+CDqJCTPLb3cQ==", null, false, "6285540d-bd2e-41f4-8ea7-c3c78cbbef5d", false, "admin" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "d4eb751d-1077-4915-80ab-dafa448d892a", "user@mail.com", false, true, false, null, "USER@MAIL.COM", "USER", "AQAAAAEAACcQAAAAELk5M20F0FaXDScJfeVDNhGVP88MdKBIxTHO+uI1lQF2KjU+MasNysxAXJeTVjAsnQ==", null, false, "d7876a5c-7105-4a8f-8302-88585ff21227", false, "user" },
+                    { "87612856-d498-4529-b453-bgrfd8395082", 0, "3901ec5f-5290-4869-8fa3-c6c5c922fbf9", "admin@mail.com", false, true, false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAENliEuE+4co6C3aSpW5k2gNaA9hNfRfhZV6wVF6g0AXvtTe2nx3d1IgQlOBg6Opeqg==", null, false, "7f6df5a7-81e4-46ed-96d3-042727b32a57", false, "admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CaloriesPer100grams", "Name" },
+                values: new object[] { 1, 200.0, "Swinsko " });
+
+            migrationBuilder.InsertData(
+                table: "Receipts",
+                columns: new[] { "Id", "Name", "TotalCalories", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Swinsko sy zele", 0.0, "87612856 - d498 - 4529 - b453 - bgrfd8395082" },
+                    { 2, "Brocoli sys smetana", 0.0, "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e" }
                 });
 
             migrationBuilder.InsertData(

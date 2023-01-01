@@ -1,6 +1,6 @@
 ﻿@model AllIngredientByReceipt
 
-<h2 class="text-center">All Ingredients in the receipt <spam style="color:red">@Model.ReceiptName</spam></h2>
+<h4 class="text-center">All Ingredients in the receipt <spam style="color:red">@Model.ReceiptName</spam></h4>
 
 <hr />
 @if (Model.Ingredients.Any())
@@ -25,11 +25,11 @@
          </tbody>
      </table>
 <hr />
-<h2 class="text-center">Total Calories for the receipt: <spam style="color:red">@Model.TotalCaloriesForReceipt</spam></h2>
+<h4 class="text-center">Total Calories for the receipt: <spam style="color:red">@Model.TotalCaloriesForReceipt</spam></h4>
 }
 else
 {
- <h4 class="text-center">No ingredients in this receipt !</h4>
+ <h4 class="text-center">No yet added ingredients in this receipt !</h4>
 }
 
 
